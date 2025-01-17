@@ -1,0 +1,33 @@
+[submodule "use RTL8188FTV On Linux"]
+	path = use RTL8188FTV On Linux
+	url = https://github.com/1999AZZAR/use-RTL8188FTV-on-linux
+[submodule "Use Waydroid On X11"]
+	path = Use Waydroid On X11
+	url = https://github.com/1999AZZAR/use-waydroid-on-x11
+[submodule "Alias Hub"]
+	path = Alias Hub
+	url = https://github.com/1999AZZAR/alias-hub
+[submodule "Tui Internet Radio"]
+	path = Tui Internet Radio
+	url = https://github.com/1999AZZAR/streamscape
+[submodule "Swap Manager"]
+	path = Swap Manager
+	url = https://github.com/1999AZZAR/swap-management
+[submodule "Firefox Removal Script"]
+	path = Firefox Removal Script
+	url = https://github.com/1999AZZAR/firefox-remover-script
+[submodule "Neofetch Rice"]
+	path = Neofetch Rice
+	url = https://github.com/1999AZZAR/neofetch_ascii
+[submodule "Passwordless Sudo"]
+	path = Passwordless Sudo
+	url = https://github.com/1999AZZAR/passwordless_sudo
+[submodule "Frea terminal AI"]
+	path = Frea terminal AI
+	url = https://github.com/1999AZZAR/frea
+[submodule "Network Redundancy Script"]
+	path = Network Redundancy Script
+	url = https://github.com/1999AZZAR/network-redundancy
+[submodule "SCRCPY scripts"]
+	path = SCRCPY scripts
+	url = https://github.com/1999AZZAR/preset-command-for-scrcpy
