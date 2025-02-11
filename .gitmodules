@@ -31,3 +31,6 @@
 [submodule "SCRCPY scripts"]
 	path = SCRCPY scripts
 	url = https://github.com/1999AZZAR/preset-command-for-scrcpy
+[submodule "DoH-Switcher"]
+	path = DoH-Switcher
+	url = https://github.com/1999AZZAR/doh-switcher.git
