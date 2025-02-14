@@ -31,3 +31,6 @@
 [submodule "DoH-Switcher"]
 	path = DoH-Switcher
 	url = https://github.com/1999AZZAR/doh-switcher.git
+[submodule "alias-hub"]
+	path = alias-hub
+	url = https://github.com/1999AZZAR/alias-hub.git
