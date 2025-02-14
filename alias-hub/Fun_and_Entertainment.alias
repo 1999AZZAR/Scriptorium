@@ -1,0 +1,50 @@
+# Fun & Entertainment
+# ----------------------------
+
+### Terminal Games
+alias tetris='bastet'                        # Terminal Tetris game
+alias sl='sl'                                # Steam locomotive (if installed)
+alias nethack='nethack'                      # Play NetHack (if installed)
+alias nyancat='nyancat'                      # Nyan Cat animation (if installed)
+alias pong='pong'                            # Play Pong in terminal (custom script)
+alias pacman='pacman4console'                # Play Pac-Man in terminal (requires pacman4console)
+alias matrix='cmatrix'                       # Matrix rain effect
+alias play-2048='2048-cli'                   # Play 2048 in terminal (requires 2048-cli)
+alias play-snake='nsnake'                    # Play Snake game (requires nsnake)
+alias play-go='go-game'                      # Play Go game (requires go-game)
+
+### Fun Utilities
+alias speedtest='speedtest-cli'                                                               # Test internet speed
+alias cowsay-meme='fortune | cowsay -f $(ls /usr/share/cowsay/cows/ | shuf -n 1) | lolcat'    # Colorful cowsay with fortune
+alias shuftext='echo $1 | fold -w1 | shuf | tr -d "\n"'                                       # Shuffle characters in a string
+alias banner='echo "$1" | figlet | lolcat'                                                    # Display a colorful banner
+alias forcow='fortune | cowsay -f `ls /usr/share/cowsay/cows/ | shuf -n 1`'                   # Random fortune with random cow
+alias clock='tty-clock -c -C 5 -C 6'                                                          # Stylish terminal clock
+
+### Easter eggs
+alias troll='echo "Your system will self-destruct in 10 seconds... kidding!"'  # Lighthearted terminal troll
+alias shake='echo "Terminal shake activated!" | pv -qL 20 | lolcat'            # Fun shaking effect
+alias hidden='echo "You found the hidden alias!" | cowsay | lolcat'            # Hidden fun message
+
+### Weather and Fun Info
+alias weather='curl wttr.in'                                                          # Show weather forecast
+alias moon='curl wttr.in/Moon'                                                        # Current moon phase
+alias horo='curl -s "http://horoscope-api.herokuapp.com/horoscope/today/$(date +%A)"' # Daily horoscope
+
+### Random Generators
+alias roll-dice='echo $((RANDOM % 6 + 1))'                                                      # Roll a six-sided die
+alias flip-coin='echo $((RANDOM % 2 == 0 ? "Heads" : "Tails"))'                                 # Flip a coin
+alias random-quote='curl -s http://quotes.stormconsultancy.co.uk/random.json | jq -r .quote'    # Get a random quote
+alias joke='curl -s https://icanhazdadjoke.com/ | jq -r ".joke"'                                # Fetch a random dad joke
+alias quote='curl -s https://api.quotable.io/random | jq -r ".content + \" — \" + .author"'     # Fetch a random quote
+alias random-color='echo "\e[38;5;$((RANDOM%256))m█\e[0m"'                                      # Display a random colored block
+
+### Reddit and News
+alias reddit='tuir'                                                                             # Terminal Reddit browser
+alias hackernews='curl -s https://hn.algolia.com/api/v1/search?query=front_page | jq .'         # Hacker News feed
+alias trending='curl -s https://api.coingecko.com/api/v3/search/trending | jq .'                # Trending cryptocurrencies
+
+### Terminal Music and Video
+alias music='ncmpcpp'                               # Terminal music player
+alias ascii-music='mpg123 $1 | pv -qL 20 | lolcat'  # Play music with ASCII effects
+alias youtube-play='yt-dlp -o - $1 | mpv -'         # Play YouTube video directly in terminal

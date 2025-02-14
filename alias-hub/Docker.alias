@@ -1,0 +1,27 @@
+# Docker Aliases
+# ----------------------------
+
+### Docker Shortcuts
+alias dps='docker ps'                        # List running containers
+alias dpsa='docker ps -a'                    # List all containers (including stopped)
+alias dimg='docker images'                   # List images
+alias dpull='docker pull'                    # Pull an image from a registry
+alias dpush='docker push'                    # Push an image to a registry
+alias dstop='docker stop $(docker ps -q)'    # Stop all running containers
+alias drm='docker rm $(docker ps -a -q)'     # Remove all containers
+alias drmi='docker rmi $(docker images -q)'  # Remove all images
+alias dprune='docker system prune -a'        # Remove unused data (volumes, networks, images, and containers)
+alias dbuild='docker build -t'               # Build Docker image
+alias drun='docker run -it'                  # Run container interactively
+alias drund='docker run -d'                  # Run container in detached mode
+alias dlogs='docker logs'                    # View container logs
+alias dexec='docker exec -it'                # Exec into a running container
+alias dinspect='docker inspect'              # Inspect container or image
+alias dnetwork='docker network ls'           # List networks
+alias dvolumes='docker volume ls'            # List volumes
+alias dstart='docker start'                  # Start a stopped container
+alias drestart='docker restart'              # Restart a container
+alias dstopid='docker stop <container_id>'   # Stop a specific container
+alias dtag='docker tag'                      # Tag an image
+alias dhistory='docker history'              # Show history of an image
+alias dcommit='docker commit'                # Commit changes to an image

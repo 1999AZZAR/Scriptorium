@@ -4,9 +4,6 @@
 [submodule "Use Waydroid On X11"]
 	path = Use Waydroid On X11
 	url = https://github.com/1999AZZAR/use-waydroid-on-x11
-[submodule "Alias Hub"]
-	path = Alias Hub
-	url = https://github.com/1999AZZAR/alias-hub
 [submodule "Tui Internet Radio"]
 	path = Tui Internet Radio
 	url = https://github.com/1999AZZAR/streamscape

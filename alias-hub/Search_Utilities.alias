@@ -1,0 +1,77 @@
+# History & Search Utilities
+# ----------------------------
+
+### History management
+alias h='history'                            # Show command history
+alias hc='history -c'                        # Clear history
+alias hg='history | grep'                    # Search history
+alias h1='history 10'                        # Last 10 commands
+alias h2='history 20'                        # Last 20 commands
+alias h3='history 30'                        # Last 30 commands
+alias hist-sync='history -a; history -n'     # Sync history across terminals
+alias hist-stats='history | awk "{CMD[$2]++;count++;}END { for (a in CMD)print CMD[a] " " CMD[a]/count*100 "% " a;}" | column -c3 -s " " -t | sort -nr | nl | head -n20'  # Command frequency stats
+
+### Search utilities
+alias find-file='find . -type f -name'                                          # Find files by name
+alias find-dir='find . -type d -name'                                           # Find directories by name
+alias find-text='grep -r'                                                       # Find text in files
+alias find-recent='find . -type f -mtime -7'                                    # Files modified in last 7 days
+alias find-large='find . -type f -size +100M -exec ls -lh {} \; | sort -k5,5nr' # Find large files
+alias find-empty='find . -type d -empty'                                        # Find empty directories
+alias find-dups='fdupes -r .'                                                   # Find duplicate files
+alias find-broken='find . -type l ! -exec test -e {} \; -print'                 # Find broken symlinks
+alias find-exec='find . -type f -executable'                                    # Find executable files
+alias find-modified='find . -type f -mmin -60'                                  # Files modified in last hour
+alias find-newer='find . -newer'                                                # Find files newer than reference
+alias find-old='find . -type f -mtime +365'                                     # Files not accessed in a year
+
+### Advanced search
+alias rgf='rg --files | rg'                  # Search filenames with ripgrep
+alias rgc='rg --count'                       # Count matches with ripgrep
+alias rgi='rg -i'                            # Case-insensitive search
+alias rgw='rg -w'                            # Search whole words only
+alias rgz='rg -z'                            # Search in compressed files
+alias locate-update='sudo updatedb'          # Update locate database
+
+### File content search
+alias grep='grep --color=auto'               # Colorized grep
+alias egrep='egrep --color=auto'             # Colorized egrep
+alias fgrep='fgrep --color=auto'             # Colorized fgrep
+alias igrep='grep -i'                        # Case-insensitive grep
+alias vgrep='grep -v'                        # Invert match
+alias ngrep='grep -n'                        # Show line numbers
+alias rgrep='grep -r'                        # Recursive grep
+alias wgrep='grep -w'                        # Match whole words only
+alias cgrep='grep --color=always'            # Force color output
+
+### Content analysis
+alias wordcount='wc -w'                             # Count words
+alias linecount='wc -l'                             # Count lines
+alias charcount='wc -m'                             # Count characters
+alias sort-uniq='sort | uniq -c | sort -nr'         # Sort and count unique lines
+alias diff-sort='diff <(sort file1) <(sort file2)'  # Compare sorted files
+
+### Aliases list
+# Alias to list all alias files or a specific one with its contents
+alias alias-list='function _alias_list() {
+    if [[ -n "$1" ]]; then
+        FILE=$(find "$ALIASES_DIR" -iname "$(echo "$1".alias)" 2>/dev/null | head -n 1)
+        if [[ -f "$FILE" ]]; then
+            echo -e "\n\033[1;34m=== ${FILE##*/} ===\033[0m"
+            cat "$FILE"
+        else
+            echo -e "\033[1;31mError: File $1.alias not found in $ALIASES_DIR\033[0m"
+        fi
+    else
+        for file in "$ALIASES_DIR"/*.alias; do
+            echo -e "\n\033[1;34m=== ${file##*/} ===\033[0m"
+            cat "$file"
+        done
+    fi
+}; _alias_list'
+
+### Alias to just show the names of alias files
+alias alias-files='echo -e "\033[1;32mAvailable alias files:\033[0m" && ls -1 "$ALIASES_DIR"/*.alias | xargs -n1 basename'
+
+### Alias to count total number of aliases
+alias alias-count='echo "Total aliases: $(grep -h "^alias" "$ALIASES_DIR"/*.alias | wc -l)"'

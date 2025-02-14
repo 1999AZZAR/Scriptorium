@@ -1,0 +1,78 @@
+# ESP Development
+# ----------------------------
+
+### Environment Setup
+alias get_idf='. $HOME/esp/esp-idf/export.sh'                                                   # Load ESP-IDF environment
+alias esp-latest='cd $HOME/esp/esp-idf && git pull && git submodule update --init --recursive'  # Update ESP-IDF
+alias esp-clean='rm -rf build/ sdkconfig sdkconfig.old'                                         # Clean build files
+
+### Build Commands
+alias esp-build='idf.py build'                              # Build project
+alias esp-clean-build='esp-clean && esp-build'              # Clean and build
+alias esp-size='idf.py size'                                # Show binary size
+alias esp-size-comp='idf.py size-components'                # Show component sizes
+alias esp-size-files='idf.py size-files'                    # Show file sizes
+
+### Flash Commands
+alias esp-flash='idf.py -p /dev/ttyUSB0 flash'              # Flash to default port
+alias esp-flash-mon='idf.py -p /dev/ttyUSB0 flash monitor'  # Flash and monitor
+alias esp-erase='idf.py -p /dev/ttyUSB0 erase_flash'        # Erase flash memory
+alias esp-boot0='esptool.py -p /dev/ttyUSB0 read_mac'       # Read MAC address
+
+### Monitoring
+alias esp-mon='idf.py monitor'                              # Start serial monitor
+alias esp-log='idf.py monitor | tee esp_log.txt'            # Monitor and save log
+alias esp-debug='idf.py openocd gdb'                        # Start GDB debugging
+
+### Configuration
+alias esp-menuconfig='idf.py menuconfig'                    # Configure project
+alias esp-save-defconfig='idf.py save-defconfig'            # Save default config
+alias esp-show-defs='idf.py show-defconfig'                 # Show current config
+
+### Port Management
+alias esp-ports='ls /dev/ttyUSB*'                               # List USB ports
+alias esp-perms='sudo chmod 666 /dev/ttyUSB0'                   # Fix permissions
+alias esp-reset-port='sudo systemctl restart brltty.service'    # Reset USB ports
+
+### Project Management
+alias esp-new='idf.py create-project'                                   # Create new project
+alias esp-examples='cd $IDF_PATH/examples'                              # Go to examples
+alias esp-template='cp -r $IDF_PATH/examples/get-started/hello_world .' # Copy template
+
+### ESP8266 RTOS SDK (if using both ESP32 and ESP8266)
+alias get_8266='. $HOME/esp/ESP8266_RTOS_SDK/export.sh'  # Load ESP8266 environment
+alias esp8266-build='make'                               # Build ESP8266 project
+alias esp8266-flash='make flash'                         # Flash ESP8266
+alias esp8266-mon='make monitor'                         # Monitor ESP8266
+
+### Partition Management
+alias esp-part='idf.py partition_table'                                             # Show partition table
+alias esp-part-gen='python $IDF_PATH/components/partition_table/gen_esp32part.py'   # Generate partition
+alias esp-part-flash='idf.py partition_table-flash'                                 # Flash partition table
+
+### OTA (Over-The-Air) Updates
+alias esp-ota-build='idf.py app-flash'                   # Build for OTA
+alias esp-ota-list='idf.py ota-list'                     # List OTA partitions
+alias esp-ota-flash='idf.py ota-flash'                   # Flash via OTA
+
+### Testing & Analysis
+alias esp-test='idf.py test'                            # Run unit tests
+alias esp-check='idf.py check-dependencies'             # Check dependencies
+alias esp-docs='idf.py docs'                            # Generate documentation
+alias esp-analyze='idf.py analyze-size'                 # Analyze binary size
+
+### Common Component Management
+alias esp-list-comp='idf.py list-components'            # List components
+alias esp-get-comp='idf.py create-component'            # Create new component
+alias esp-reg-comp='idf.py register-components'         # Register components
+
+### Development Utilities
+alias esp-addr2line='xtensa-esp32-elf-addr2line'        # Convert addresses to lines
+alias esp-stack-decode='$IDF_PATH/tools/esp_stack_trace_parser.py' # Decode stack traces
+alias esp-core-dump='espcoredump.py'                    # Analyze core dumps
+
+### Quick Access to Common Directories
+alias esp-home='cd $HOME/esp'                           # Go to ESP root directory
+alias esp-idf='cd $IDF_PATH'                           # Go to IDF directory
+alias esp-tools='cd $IDF_PATH/tools'                   # Go to IDF tools
+alias esp-proj='cd $HOME/esp/projects'                 # Go to projects directory

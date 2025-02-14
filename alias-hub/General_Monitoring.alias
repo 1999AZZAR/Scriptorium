@@ -1,0 +1,146 @@
+# General Monitoring Aliases
+# ----------------------------
+
+### General System Information
+alias sysinfo='neofetch'
+alias cpuinfo='lscpu'
+alias meminfo='free -h'
+alias diskinfo='lsblk -f'
+alias tempinfo='sensors'
+alias usbinfo='lsusb'
+alias pciinfo='lspci'
+alias hwinfo='hwinfo --short'
+
+### System Performance
+alias latencytop='sudo latencytop'                                                              # Kernel latency statistics
+alias iostatdetailed='iostat -dx 1'                                                             # Detailed disk and CPU stats
+alias perfmonitor='perf stat -e task-clock,cycles,instructions,cache-references,cache-misses'   # Detailed CPU performance
+alias processlog='ps auxf --sort=-%cpu,-%mem | head -n 20'                                      # Top 20 CPU/memory-consuming processes
+
+### Process and Resource Monitoring
+alias htop='htop'           # Interactive process viewer
+alias top='top'             # Default system monitor
+alias bashtop='bashtop'     # Modern and graphical process monitor
+alias glances='glances'     # Cross-platform monitoring tool
+alias gotop='gotop'         # Terminal-based graphical activity monitor
+alias atop='atop'           # Advanced system monitor
+
+### CPU Monitoring
+alias cputop='htop --sort PERCENT_CPU'                                          # Sort htop by CPU usage
+alias cpuload='mpstat 1'                                                        # CPU usage stats in real time
+alias cpustats='iostat -c'                                                      # CPU performance stats
+alias cpuclock='watch -n 1 "cat /proc/cpuinfo | grep MHz"'                      # Monitor CPU clock speeds
+alias cpupower='cpupower frequency-info'                                        # CPU frequency and governor info
+alias cpuusage='sar -u 1'  # CPU usage statistics over time
+alias cpufreq='watch -n 1 "cat /proc/cpuinfo | grep -E \"MHz|model name\""'     # Monitor CPU frequency and name
+alias thermalzones='watch -n 1 "cat /sys/class/thermal/thermal_zone*/temp"'     # Monitor thermal zones
+
+### GPU Monitoring
+alias gputop='nvidia-smi dmon'              # NVIDIA GPU monitoring
+alias gpuinfo='nvidia-smi'                  # NVIDIA GPU details
+alias amdgpuinfo='radeontop'                # AMD GPU monitor
+alias vulkaninfo='vulkaninfo'               # Vulkan GPU info
+alias clinfo='clinfo'                       # OpenCL device info
+alias nvtop='nvtop'                         # Interactive NVIDIA GPU monitor
+alias gpuutil='watch -n 1 "nvidia-smi --query-gpu=utilization.gpu --format=csv"'        # GPU utilization
+alias gpumem='nvidia-smi --query-gpu=memory.used,memory.total --format=csv,noheader'    # GPU memory usage
+alias amdtemp='watch -n 1 "cat /sys/class/drm/card0/device/hwmon/hwmon*/temp1_input"'   # AMD GPU temperature
+
+### RAM and Swap Monitoring
+alias ramtop='htop --sort PERCENT_MEM'              # Sort htop by memory usage
+alias memtop='watch -n 1 free -h'                   # RAM usage in real time
+alias swapinfo='swapon --show'                      # Swap details
+alias swaptop='watch -n 1 cat /proc/swaps'          # Monitor swap usage
+alias memleaks='sudo slabtop'                       # Kernel slab memory usage
+alias pagefaults='vmstat -s | grep "page"'          # Monitor memory page faults
+
+### Disk and Storage Monitoring
+alias iotop='iotop'                                 # Monitor disk I/O
+alias disktop='htop --sort IO_RATE'                 # Sort htop by disk I/O
+alias dfinfo='df -h'                                # Disk space usage
+alias duinfo='du -sh * | sort -h'                   # Disk usage per directory
+alias smartinfo='sudo smartctl -a /dev/sdX'         # SMART data for a specific disk
+alias mountinfo='findmnt -t ext4,ntfs'              # Mounted partitions
+alias diskload='iotop -o'                           # Monitor disk load only active processes
+alias fsinfo='df -T -h'                             # Filesystem and type
+alias inodestats='df -i'                            # Monitor inode usage
+alias blkinfo='blkid'                               # Block device attributes
+alias hdparam='sudo hdparm -I /dev/sdX'             # Disk-specific parameters
+alias duheavy='du -ah / | sort -rh | head -n 20'    # Show top 20 largest files/directories
+
+### Network Monitoring
+alias nethogs='sudo nethogs'                        # Bandwidth per process
+alias iftop='sudo iftop'                            # Live network usage
+alias netstatinfo='netstat -tuln'                   # Open network connections
+alias pingtest='ping google.com -c 4'               # Quick internet connectivity check
+alias speedtest='speedtest-cli'                     # Internet speed test
+alias nettop='htop --sort NET_IO'                   # Sort htop by network usage
+alias ipinfo='ip a'                                 # Detailed network interface info
+alias traceroute='traceroute google.com'            # Trace network route
+alias macinfo='ip link show'                        # MAC address and interface details
+alias routes='ip route show'                        # Routing table
+alias tcpdump='sudo tcpdump -i any'                 # Network packet capture
+alias dnscheck='dig google.com'                     # DNS resolution check
+alias openports='sudo netstat -tulnp | grep LISTEN' # Open listening ports
+alias bwmon='bmon'                                  # Bandwidth monitoring
+alias neterror='dmesg | grep -i network'            # Network-related kernel errors
+alias wireless='iwconfig'                           # Wireless interface status
+
+### Docker and Containers
+alias dockerstats='docker stats'  # Real-time resource usage of containers
+alias dockertop='docker top $(docker ps -q)'  # View processes running in all containers
+alias kubeinfo='kubectl top nodes'  # Kubernetes node performance
+alias kubecontinfo='kubectl top pods'  # Kubernetes pod performance
+
+### Power Management and Battery Monitoring
+alias powertop='sudo powertop'                                          # Power usage and optimization
+alias batinfo='upower -i /org/freedesktop/UPower/devices/battery_BAT0'  # Battery status
+alias acpiinfo='acpi -V'                                                # Battery and AC adapter details
+alias energystats='cat /sys/class/power_supply/BAT0/uevent'             # Detailed energy stats
+alias energytop='powertop --html=powertop_report.html'  # Generate HTML power report
+alias powermode='tlp-stat -s'  # Show current power management mode
+alias bmsinfo='sudo cat /sys/class/power_supply/BAT0/uevent'  # Detailed battery management system stats
+
+### Temperature Monitoring
+alias cputemp='sensors | grep -i "core"'                                      # CPU temperature
+alias gputemp='nvidia-smi --query-gpu=temperature.gpu --format=csv,noheader'  # GPU temperature
+alias hddtemp='sudo hddtemp /dev/sdX'                                         # HDD temperature
+alias alltemp='sensors'                                                       # All sensors
+
+### Log Monitoring
+alias syslog='sudo tail -f /var/log/syslog'     # Live system log
+alias dmesglog='sudo dmesg -T'                  # Kernel logs with timestamp
+alias journallog='journalctl -xe'               # Systemd logs
+alias authlog='sudo tail -f /var/log/auth.log'  # Authentication logs
+alias kernlog='sudo tail -f /var/log/kern.log'  # Kernel-specific log
+alias bootlog='journalctl -b'                   # Logs from the current boot
+alias faillog='sudo faillog'                    # Authentication failure log
+alias xlog='tail -f ~/.xsession-errors'         # X server log
+
+### Virtualization
+alias vmusage='virsh list --all && virsh domstats'                  # Virtual machine resource usage
+alias hypervinfo='sudo virt-top'                                    # Hypervisor performance monitoring
+alias vminfo='VBoxManage list vms && VBoxManage list runningvms'    # VirtualBox VMs
+
+### File System Monitoring
+alias fnotify='inotifywait -m /path/to/dir'     # Watch for file changes in a directory
+alias fscheck='fsck -N /dev/sdX'                # File system check (dry run)
+alias extcheck='dumpe2fs /dev/sdX | less'       # EXT file system details
+
+### Kernel and Dmesg
+alias dmesgwarn='dmesg | grep -i warning'       # Filter warnings from dmesg
+alias dmesgerr='dmesg | grep -i error'          # Filter errors from dmesg
+alias kernelver='uname -r'                      # Display kernel version
+alias kernelconfig='zcat /proc/config.gz'       # Kernel configuration if enabled
+
+### Thermal Management
+alias cpucool='sudo cpupower frequency-set --governor powersave'    # Reduce CPU heat
+alias fancontrol='sudo pwmconfig'                                   # Adjust fan speeds (requires lm-sensors)
+alias throtinfo='dmesg | grep -i throttle'                          # Check for thermal throttling
+
+### Other Useful Tools
+alias vmstatinfo='vmstat 1'                 # System performance metrics
+alias iostatinfo='iostat -x 1'              # I/O performance metrics
+alias uptimeinfo='uptime'                   # System uptime
+alias whoinfo='who -a'                      # Logged-in users
+alias proctop='ps aux --sort=-%mem | head'  # Top processes by memory

@@ -1,0 +1,60 @@
+# Navigations
+# ----------------------------
+
+### Basic Navigation
+alias ..='cd ..'                              # Go up one level
+alias ...='cd ../..'                          # Go up two levels
+alias ....='cd ../../..'                      # Go up three levels
+alias back='cd -'                             # Go to the previous directory
+
+### Quick Access to Common Directories
+alias home='cd ~'                             # Go to the home directory
+alias desk='cd ~/Desktop'                     # Quick access to Desktop
+alias docs='cd ~/Documents'                   # Quick access to Documents
+alias dl='cd ~/Downloads'                     # Quick access to Downloads
+alias media='cd ~/Media'                      # Quick access to Media
+alias proj='cd ~/Projects'                    # Quick access to Projects
+alias repos='cd ~/Repositories'               # Quick access to Repositories
+alias src='cd ~/src'                          # Quick access to source code folder
+alias work='cd ~/Work'                        # Quick access to Work directory
+alias bin='cd /usr/local/bin'                 # Quick access to system binaries
+
+### Development-Focused Navigation
+alias codebase='cd ~/Codebase'                # Main codebase directory
+alias scripts='cd ~/Scripts'                  # Script files directory
+alias pyproj='cd ~/PythonProjects'            # Python projects directory
+alias web='cd ~/WebProjects'                  # Web projects directory
+
+### Temporary and System Directories
+alias tmp='cd /tmp'                           # Go to temporary files directory
+alias logs='cd /var/log'                      # Access system logs directory
+alias conf='cd /etc'                          # Access system configuration files
+alias cache='cd ~/.cache'                     # Go to cache directory
+
+### Multi-Directory Jumping
+alias cdw='cd ~/Work && ls -l'                # Jump to Work and list contents
+alias cdm='cd ~/Media && ls -l'               # Jump to Media and list contents
+alias cdp='cd ~/Projects && ls -l'            # Jump to Projects and list contents
+
+### Enhanced Navigation
+alias md='mkdir -p'                           # Create directory with parent dirs
+alias rd='rmdir'                              # Remove empty directory
+alias up1='cd ..'                             # Go up one level
+alias up2='cd ../..'                          # Go up two levels
+alias up3='cd ../../..'                       # Go up three levels
+alias root='cd /'                             # Go to root directory
+
+### Search and Explore
+alias findhere='find . -name'                 # Search for files in current directory
+alias tree='tree -C'                          # View directory structure as a tree
+alias treed='tree -d -C'                      # Tree view showing directories only
+alias explore='xdg-open .'                    # Open current directory in file explorer
+
+### Directory Bookmarks
+alias bmark-add='pwd > ~/.dir_bmarks'         # Bookmark the current directory
+alias bmark-go='cd $(cat ~/.dir_bmarks)'      # Go to the bookmarked directory
+alias bmark-clear='> ~/.dir_bmarks'           # Clear directory bookmark
+
+### Recent Directory Access
+alias recent='dirs -v | head -10'             # Show recent directories
+alias recent-go='cd $(dirs +1)'               # Go to the most recent directory

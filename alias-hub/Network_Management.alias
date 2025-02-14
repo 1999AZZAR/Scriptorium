@@ -1,0 +1,103 @@
+# Network Management & Tools
+# ----------------------------
+
+### Basic Network Information
+alias myip='curl ifconfig.me'                   # Show public IP
+alias localip='ip addr show'                    # Show local IP addresses
+alias ips='ip -c a'                             # Show all IPs in color
+alias dns-info='cat /etc/resolv.conf'           # Show DNS info
+alias gateway='ip route | grep default'         # Show default gateway
+alias mac='ip link show'                        # Show MAC addresses
+alias ipv6='ip -6 addr show'                    # Show IPv6 addresses
+alias hosts='cat /etc/hosts'                    # Show hosts file
+
+### Network Service Management
+alias net-restart='sudo systemctl restart NetworkManager'  # Restart networking
+alias dns='sudo systemctl restart systemd-resolved'        # Restart DNS
+alias dns-flush='sudo systemd-resolve --flush-caches'      # Flush DNS cache
+alias vpn-restart='sudo systemctl restart openvpn'         # Restart OpenVPN
+alias net-stop='sudo systemctl stop NetworkManager'        # Stop networking
+alias net-start='sudo systemctl start NetworkManager'      # Start networking
+alias cloudflare='sudo systemctl restart cloudflared'      # Restart Cloudflare
+
+### WiFi Management
+alias wifi-list='nmcli device wifi list'                    # List WiFi networks
+alias wifi-scan='sudo iwlist wlan0 scan | grep ESSID'       # Scan WiFi networks
+alias wifi-connect='nmcli device wifi connect'              # Connect to WiFi
+alias wifi-on='nmcli radio wifi on'                         # Enable WiFi
+alias wifi-off='nmcli radio wifi off'                       # Disable WiFi
+alias wifi-status='nmcli radio wifi'                        # WiFi status
+alias wifi-show='nmcli device wifi show'                    # Show WiFi details
+
+### Network Monitoring
+alias net-stat='netstat -tulpn'                             # Show all active connections
+alias net-established='netstat -nat | grep ESTABLISHED'     # Show established connections
+alias net-listening='netstat -nat | grep LISTEN'            # Show listening ports
+alias net-udp='netstat -nu'                                 # Show UDP connections
+alias net-tcp='netstat -nt'                                 # Show TCP connections
+alias net-routes='netstat -rn'                              # Show routing table
+
+### Network Performance & Debugging
+alias ping='ping -c 5'                       # Ping with 5 packets
+alias fastping='ping -c 100 -s.2'            # Quick network test
+alias ping-google='ping -c 5 google.com'     # Check internet connectivity
+alias traceroute='traceroute -I'             # ICMP traceroute
+alias mtr-report='mtr --report'              # MTR network diagnostic
+alias bandwidth='speedtest-cli'              # Internet speed test
+alias bandwidth-simple='curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python -'  # Simple speed test
+alias net-load='iftop -i any'                # Network load monitor
+alias net-top='nethogs'                      # Process network traffic
+
+### Port Management
+alias ports='sudo lsof -i -P -n'                            # Show all open ports
+alias ports-listening='sudo lsof -i -P -n | grep LISTEN'    # Show listening ports
+alias port-scan='sudo nmap -sT -O localhost'                # Scan local ports
+alias port-open='sudo lsof -i'                              # Show open ports
+alias tcp-open='sudo lsof -iTCP -sTCP:LISTEN -P -n'         # Show open TCP ports
+alias udp-open='sudo lsof -iUDP -P -n'                      # Show open UDP ports
+
+### Network Security
+alias firewall-status='sudo ufw status verbose'     # Show firewall status
+alias firewall-rules='sudo iptables -L -n -v'       # Show firewall rules
+alias firewall-open='sudo ufw allow'                # Open port in firewall
+alias firewall-close='sudo ufw deny'                # Close port in firewall
+alias net-scan='sudo nmap -sP 192.168.1.0/24'       # Scan network devices
+alias ssl-check='openssl s_client -connect'         # Check SSL connection
+alias watch-tcp='sudo tcpdump -i any'               # Monitor TCP traffic
+alias watch-http='sudo tcpdump -i any port 80'      # Monitor HTTP traffic
+
+### Network Services
+alias dns-dig='dig +short'                      # DNS lookup
+alias dns-trace='dig +trace'                    # Trace DNS path
+alias dns-ptr='dig -x'                          # Reverse DNS lookup
+alias whois-lookup='whois'                      # WHOIS lookup
+alias http-serve='python3 -m http.server 8000'  # Quick HTTP server
+alias ftp-serve='python3 -m pyftpdlib'          # Quick FTP server
+alias ssl-cert='openssl x509 -text -noout -in'  # Show SSL certificate
+
+### VPN Management
+alias vpn-status='nmcli connection show --active | grep vpn'  # VPN status
+alias vpn-list='nmcli connection | grep vpn'    # List VPN connections
+alias vpn-up='sudo openvpn --config'            # Start OpenVPN
+alias vpn-kill='sudo killall openvpn'           # Kill VPN connections
+alias vpn-check='curl ipinfo.io'                # Check VPN IP
+alias vpn-routes='ip route show'                # Show VPN routes
+
+### Network Troubleshooting
+alias flush-dns='sudo systemd-resolve --flush-caches'   # Flush DNS cache
+alias flush-iptables='sudo iptables -F'                 # Flush all iptables rules
+alias release-ip='sudo dhclient -r'                     # Release DHCP IP
+alias renew-ip='sudo dhclient'                          # Renew DHCP IP
+alias clear-hosts='sudo truncate -s 0 /etc/hosts'       # Clear hosts file
+alias net-debug='sudo tcpdump -i any -n'                # Debug network traffic
+alias check-ports='nc -zv'                              # Check specific port
+alias net-restart-full='sudo systemctl restart NetworkManager && sudo systemctl restart systemd-resolved'  # Full network restart
+
+### Network Statistics & Logging
+alias net-stats='vnstat'                            # Show network statistics
+alias net-today='vnstat -i any -h'                  # Today's network usage
+alias net-month='vnstat -i any -m'                  # Monthly network usage
+alias net-top-talkers='sudo iftop -n'               # Show network heavy users
+alias net-connections='ss -s'                       # Connection statistics
+alias net-errors='netstat -i'                       # Interface errors
+alias watch-connections='watch -n1 netstat -tpanl'  # Monitor connections

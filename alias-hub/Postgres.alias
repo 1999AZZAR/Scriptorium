@@ -1,0 +1,56 @@
+# PostgreSQL Aliases
+# Add these to your ~/.bashrc or ~/.bash_aliases file
+
+# Basic psql connection with default database
+alias psql='psql -U postgres'
+
+# List all databases
+alias psl='psql -l'
+
+# Connect to a specific database
+# Usage: psdb database_name
+alias psdb='psql -U postgres -d'
+
+# Backup database
+# Usage: pgbackup database_name
+alias pgbackup='pg_dump -U postgres -F c -b -v -f'
+
+# Restore database from backup
+# Usage: pgrestore backup_file database_name
+alias pgrestore='pg_restore -U postgres -d'
+
+# Monitor PostgreSQL processes
+alias pgps='psql -U postgres -c "SELECT pid, usename, client_addr, state, query_start, query FROM pg_stat_activity;"'
+
+# Show database sizes
+alias pgsize='psql -U postgres -c "SELECT pg_database.datname, pg_size_pretty(pg_database_size(pg_database.datname)) AS size FROM pg_database ORDER BY pg_database_size(pg_database.datname) DESC;"'
+
+# Show table sizes in current database
+alias pgtsize='psql -U postgres -c "SELECT schemaname, relname, pg_size_pretty(pg_total_relation_size(relid)) AS total_size FROM pg_catalog.pg_statio_user_tables ORDER BY pg_total_relation_size(relid) DESC;"'
+
+# Kill all connections to a database
+# Usage: pgkill database_name
+alias pgkill='psql -U postgres -c "SELECT pg_terminate_backend(pid) FROM pg_stat_activity WHERE datname='\''$1'\'' AND pid <> pg_backend_pid();"'
+
+# Create a new database
+# Usage: pgcreate database_name
+alias pgcreate='createdb -U postgres'
+
+# Drop a database
+# Usage: pgdrop database_name
+alias pgdrop='dropdb -U postgres'
+
+# Start PostgreSQL server (adjust path as needed)
+alias pgstart='sudo service postgresql start'
+
+# Stop PostgreSQL server
+alias pgstop='sudo service postgresql stop'
+
+# Restart PostgreSQL server
+alias pgrestart='sudo service postgresql restart'
+
+# Show PostgreSQL server status
+alias pgstatus='sudo service postgresql status'
+
+# Tail PostgreSQL logs (adjust path as needed)
+alias pglog='sudo tail -f /var/log/postgresql/postgresql-*.log'
