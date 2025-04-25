@@ -34,3 +34,9 @@
 [submodule "alias-hub"]
 	path = alias-hub
 	url = https://github.com/1999AZZAR/alias-hub.git
+[submodule "Systemd-Service-Manager-Web-UI"]
+	path = Systemd-Service-Manager-Web-UI
+	url = https://github.com/1999AZZAR/Systemd-Service-Manager-Web-UI
+[submodule "dynamic_port_guard"]
+	path = dynamic_port_guard
+	url = https://github.com/1999AZZAR/dynamic_port_guard
