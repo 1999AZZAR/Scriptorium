@@ -1,0 +1,53 @@
+{
+    "layer": "overlay",
+    "position": "top",
+    "height": 38,
+
+    "modules-left": [
+        "hyprland/workspaces"
+    ],
+    "modules-center": [
+        "hyprland/window"
+    ],
+    "modules-right": [
+        "pulseaudio",
+        "network",
+        "clock",
+        "tray"
+    ],
+
+    "hyprland/workspaces": {
+        "disable-scroll": false,
+        "all-outputs": true,
+        "on-scroll-right": "~/.config/waybar/scripts/scroll_workspace.sh e+1",
+        "on-scroll-left": "~/.config/waybar/scripts/scroll_workspace.sh e-1",
+        "format": "{name}"
+    },
+    "hyprland/window": {
+        "max-length": 35,
+        "separate-outputs": true,
+        "format": "{title}"
+    },
+    "pulseaudio": {
+        "format": "{icon} {volume}%",
+        "format-muted": "\uf6a9 Muted",
+        "format-icons": {
+            "default": ["\uf026", "\uf027", "\uf028"]
+        },
+        "on-click": "pavucontrol"
+    },
+    "network": {
+        "format-wifi": "\uf1eb {essid}",
+        "format-ethernet": "\uF1E6",
+        "format-disconnected": "\uf127",
+        "on-click": "kitty -e nmtui"
+    },
+    "clock": {
+        "format": "{:%H:%M}",
+        "tooltip-format": "{:%A, %B %d, %Y}"
+    },
+    "tray": {
+        "icon-size": 21,
+        "spacing": 10
+    }
+}

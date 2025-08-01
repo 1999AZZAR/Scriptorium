@@ -1,0 +1,144 @@
+{
+    "layer": "top",
+    "position": "top",
+    "mod": "dock",
+    "exclusive": true,
+    "passthrough": false,
+    "gtk-layer-shell": true,
+    "height": 28,
+    "modules-left": [
+        "hyprland/workspaces",
+        "custom/media"
+    ],
+    "modules-center": [
+        "hyprland/window"
+    ],
+    "modules-right": [
+        "network",
+        "bluetooth",
+        "pulseaudio",
+        "custom/kdeconnect",
+        "custom/notification",
+        "clock"
+    ],
+    "network": {
+        "format-wifi": "\uf1eb {essid} ({signalStrength}%)",
+        "format-ethernet": "\uF1E6 ethernet",
+        "format-disconnected": "\uf127 Disconnected",
+        "format-linked": "\uf0c1 {ifname} (No IP)",
+        "tooltip-format-wifi": "Network: {essid}\nSignal: {signalStrength}%\nIP: {ipaddr}",
+        "tooltip-format-ethernet": "Interface: {ifname}\nIP: {ipaddr}/{cidr}",
+        "tooltip-format-disconnected": "Network Status: Disconnected",
+        "on-click": "kitty -e nmtui",
+        "interval": 5
+    },
+    "bluetooth": {
+        "format": "（ ͜.人 ͜.）{status}",
+        "format-disabled": "（ ͜.人 ͜.）Off",
+        "format-off": "（ ͜.人 ͜.）Off",
+        "format-on": "（ ͜.人 ͜.）On",
+        "format-connected": "（ ͜.人 ͜.）{device_alias}",
+        "format-connected-battery": "（ ͜.人 ͜.）{device_alias} {device_battery_percentage}%",
+        "tooltip-format-connected": "Device: {device_alias} ({device_battery_percentage}%)",
+        "tooltip-format-enumerate-connected": "{device_alias} ({device_battery_percentage}%)",
+        "on-click": "blueman-manager",
+        "on-click-right": "rfkill toggle bluetooth"
+    },
+    "pulseaudio": {
+        "format": "{icon} {volume}%",
+        "format-bluetooth": "{icon} {volume}% \uf294",
+        "format-muted": "\uf6a9 Muted",
+        "format-icons": {
+            "headphones": "\uf025",
+            "handsfree": "\uf590",
+            "headset": "\uf590",
+            "phone": "\uf095",
+            "portable": "\uf028",
+            "car": "\uf1b9",
+            "default": ["\uf026", "\uf027", "\uf028"]
+        },
+        "scroll-step": 3,
+        "on-click": "pavucontrol",
+        "on-click-right": "pactl set-sink-mute @DEFAULT_SINK@ toggle"
+    },
+    "clock": {
+        "format": "{:%H:%M:%S}",
+        "format-alt": "{:%A, %B %d, %Y}",
+        "tooltip-format": "<tt>{calendar}</tt>",
+        "calendar": {
+            "mode": "month",
+            "mode-mon-col": 3,
+            "weeks-pos": "right",
+            "on-scroll": 1,
+            "on-click-right": "mode",
+            "format": {
+                "months": "<span color='#ffead3'><b>{}</b></span>",
+                "days": "<span color='#ecc6d9'><b>{}</b></span>",
+                "weeks": "<span color='#99ffdd'><b>W{}</b></span>",
+                "weekdays": "<span color='#ffcc66'><b>{}</b></span>",
+                "today": "<span color='#ff6699'><b>{}</b></span>"
+            }
+        }
+    },
+    "tray": {
+        "icon-size": 20,
+        "spacing": 10
+    },
+    "hyprland/window": {
+        "max-length": 28,
+        "separate-outputs": true,
+        "format": "{title}"
+    },
+    "hyprland/workspaces": {
+        "persistent-workspaces": {
+            "*": 2
+        },
+        "disable-scroll": false,
+        "all-outputs": true,
+        "on-scroll-right": "~/.config/waybar/scripts/scroll_workspace.sh e+1",
+        "on-scroll-left": "~/.config/waybar/scripts/scroll_workspace.sh e-1",
+        "on-scroll-up": "~/.config/waybar/scripts/scroll_workspace.sh e+1",
+        "on-scroll-down": "~/.config/waybar/scripts/scroll_workspace.sh e-1",
+        "format": "{icon}",
+        "format-icons": {
+            "default": "●"
+        }
+    },
+    "custom/power-menu": {
+        "format": "\uf011 Power",
+        "tooltip": "Power Menu",
+        "on-click": "wlogout"
+    },
+    "custom/notification": {
+        "tooltip": false,
+        "format": "{icon} {}",
+        "format-icons": {
+            "notification": "",
+            "none": "",
+            "dnd-notification": "",
+            "dnd-none": ""
+        },
+        "return-type": "json",
+        "exec-if": "which swaync-client",
+        "exec": "swaync-client -swb",
+        "on-click": "swaync-client -t -sw",
+        "on-click-right": "swaync-client -d -sw",
+        "escape": true
+    },
+    "custom/kdeconnect": {
+        "format": "{}",
+        "exec": "~/.config/waybar/kdeconnect.py",
+        "return-type": "json",
+        "interval": 5,
+        "on-click": "~/.config/waybar/scripts/kdeconnect_share.sh",
+        "on-click-right": "kdeconnect-app"
+    },
+    "custom/media": {
+        "max-lenght": 25,
+        "format": "{}",
+        "return-type": "json",
+        "interval": 1,
+        "exec": "~/.config/waybar/scripts/media_player.sh",
+        "on-click": "playerctl play-pause",
+    }
+}

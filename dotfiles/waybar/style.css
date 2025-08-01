@@ -1,0 +1,173 @@
+/* Import colors from pywal's cache. Assumes this file exists. */
+@import '/home/azzar/.cache/wal/colors-waybar.css';
+
+/* --- Global Styles --- */
+* {
+  font-family: 'SF Pro Display', 'JetBrainsMono Nerd Font Propo', sans-serif;
+  font-size: 13px;
+  font-weight: bold;
+  border: none;
+  border-radius: 15px;
+  transition: all 0.15s ease;
+}
+
+/* --- Main Bar --- */
+#waybar {
+  background-color: alpha(@background, 0.15);
+  color: @foreground;
+  margin: 5px;
+}
+
+/* --- General Module Styling --- */
+#clock,
+#network,
+#pulseaudio,
+#tray,
+#cpu,
+#memory,
+#disk,
+#custom-appmenu,
+#custom-power-menu,
+#custom-media,
+#custom-sysinfo,
+#custom-gpu,
+#custom-kdeconnect,
+#bluetooth,
+#custom-notification,
+#window,
+#workspaces button {
+  padding: 2px 12px;
+  margin: 5px;
+  color: @foreground;
+  background-color: alpha(@background, 0.1);
+}
+
+/* --- State-Specific Styles --- */
+
+/* This hover effect applies to all modules */
+#clock:hover,
+#network:hover,
+#pulseaudio:hover,
+#tray:hover,
+#cpu:hover,
+#memory:hover,
+#disk:hover,
+#window:hover,
+#custom-appmenu:hover,
+#custom-power-menu:hover,
+#custom-gpu:hover,
+#custom-kdeconnect:hover,
+#custom-sysinfo:hover,
+#bluetooth:hover,
+#custom-notification:hover,
+#custom-media.Playing:hover,
+#custom-notification.notification:hover,
+#custom-media.Paused:hover,
+#pulseaudio.muted:hover,
+#custom-media.stopped:hover,
+#bluetooth.disable:hover,
+#workspaces button:hover,
+#workspaces button.active:hover,
+#custom-notification.dnd-none:hover,
+#custom-notification.dnd-notification:hover,
+#network.disconnected:hover {
+  background-color: alpha(@foreground, 0.8);
+  color: @background;
+}
+
+#workspaces button.urgent {
+  background-color: @color1;
+  color: @background;
+}
+
+#workspaces button.active {
+  background-color: alpha(@color1, 0.5);
+  color: @foreground;
+}
+
+/* Media Player Status */
+#custom-media {
+  color: transparent;
+  background-color: transparent;
+}
+
+/* Media Player & Notification Status */
+#custom-media.Playing,
+#custom-notification.notification {
+  background-color: alpha(@background, 0.4);
+  color: @foreground;
+}
+
+#custom-media.Paused {
+  background-color: alpha(@foreground, 0.3);
+  color: @color1;
+}
+
+/* Muted/Disconnected States */
+#pulseaudio.muted,
+#custom-media.stopped,
+#bluetooth.disable,
+#bluetooth.off,
+#custom-notification.dnd-none,
+#custom-notification.dnd-notification,
+#network.disconnected {
+  background-color: alpha(@color1, 0.5);
+}
+
+/* --- Tooltips & Clock Calendar --- */
+
+/* --- Tooltip --- */
+tooltip {
+  background-color: alpha(@background, 0.85);
+  border-radius: 12px;
+  border: 1px solid @color4;
+  padding: 10px;
+}
+
+tooltip label {
+  color: @foreground;
+}
+
+/* --- Calender --- */
+#clock calendar.header {
+  color: @color4;
+  font-weight: bold;
+  padding-bottom: 5px;
+}
+
+#clock calendar.weekday {
+  color: @color3;
+  font-weight: bold;
+  padding-bottom: 3px;
+}
+
+#clock calendar.weeknum {
+  color: @color5;
+  margin-right: 8px;
+}
+
+#clock calendar.day {
+  color: @foreground;
+}
+
+#clock calendar.day.today {
+  color: @background;
+  background-color: @color2;
+  border-radius: 8px;
+  font-weight: bold;
+}
+
+/* --- hidding --- */
+.hidden {
+  opacity: 0;
+  margin: 0;
+  padding: 0;
+}
+
+#cpu.hidden,
+#memory.hidden,
+#custom-gpu.hidden {
+  opacity: 0;
+  margin: 0;
+  padding: 0;
+}

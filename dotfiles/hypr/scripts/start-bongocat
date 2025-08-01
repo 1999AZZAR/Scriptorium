@@ -1,0 +1,61 @@
+#!/bin/bash
+
+# Bongo Cat Launcher Script
+# -------------------------
+# Navigates to the project directory, checks for an existing process,
+# and starts wayland-bongocat in the background.
+
+# --- Configuration ---
+# Set the full path to your project directory.
+# IMPORTANT: Replace '/home/azzar' with your actual home directory if it's different.
+PROJECT_DIR="/home/azzar/Downloads/project/wayland-bongocat"
+EXECUTABLE="build/bongocat"
+
+# --- Script Logic ---
+
+# Function to display errors and exit
+function error_exit {
+    echo "Error: $1" >&2
+    exit 1
+}
+
+# Check if the project directory exists
+if [ ! -d "$PROJECT_DIR" ]; then
+    error_exit "Project directory not found at '$PROJECT_DIR'."
+fi
+
+# Navigate to the project directory or exit on failure
+cd "$PROJECT_DIR" || error_exit "Could not change to directory '$PROJECT_DIR'."
+
+# Check if the executable file exists and is actually executable
+if [ ! -x "$EXECUTABLE" ]; then
+    error_exit "Executable not found at '$PROJECT_DIR/$EXECUTABLE'. Make sure you have compiled the project."
+fi
+
+# Check if the process is already running
+if pgrep -f "$EXECUTABLE" > /dev/null; then
+    echo "Bongo Cat is already running."
+    read -p "Do you want to stop it? (y/n) " -n 1 -r
+    echo # Move to a new line
+    if [[ $REPLY =~ ^[Yy]$ ]]; then
+        echo "Stopping Bongo Cat..."
+        pkill -f "$EXECUTABLE"
+        echo "Bongo Cat stopped."
+    fi
+    exit 0
+fi
+
+# Start the application in the background
+# The output (logs) is redirected to /dev/null to keep your terminal clean.
+# Remove '> /dev/null 2>&1' if you want to see the logs in your terminal.
+echo "Starting Bongo Cat in the background..."
+./$EXECUTABLE > /dev/null 2>&1 &
+
+# Confirm that it started
+if [ $? -eq 0 ]; then
+    echo "Success! Bongo Cat is now running."
+else
+    error_exit "Failed to start Bongo Cat."
+fi
+
+exit 0
